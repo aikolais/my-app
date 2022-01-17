@@ -1,0 +1,53 @@
+.container {
+
+}
+
+.container-btn{
+    display: block;
+    float: right;
+}
+
+.btn.table-organizations__add {
+    background: rgb(27, 81, 135);
+    border: unset;
+    border-radius: 4.5px;
+    opacity: 1;
+    width: 157px;
+    height: 30px;
+    color: #fff;
+  }
+
+.btn.table-organizations__filter {
+    border: 1px solid #dddddd;
+    min-width: 198px;
+    max-width: 198px;
+    margin: 1px;
+    height: 28px;
+}
+
+.table-organizations {
+  margin-top: 50px;
+  border-collapse: collapse;
+  border: 1px solid #dddddd;
+  border-style: hidden;
+  margin: 20px;
+}
+
+.table-name {
+  text-align: left;
+  padding: 10px 10px;
+  border-collapse: collapse;
+  border: 1px solid #dddddd;
+}
+
+.table__item {
+  display: block;
+  width: 100vh;
+  padding: 10px 10px;
+  border-collapse: collapse;
+  border: 1px solid #dddddd;
+}
+
+h2 {
+  margin: 20px;
+}
