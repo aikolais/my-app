@@ -1,6 +1,8 @@
 import React from "react";
 import "./styles.css";
-import { FaRegUserCircle } from 'react-icons/fa';
+import { Icon } from '@fluentui/react/lib/Icon';
+
+const MyIcon = () => <Icon iconName="UserOptional" size="medium" />;
 
 class Navbar extends React.Component {
   render() {
@@ -10,7 +12,7 @@ class Navbar extends React.Component {
           <h1>GRC</h1>
           <ul className="navbar__links">
             <li>
-              <a href="enterprise.html"><FaRegUserCircle size={35} color="#fff"/></a>
+              <a href="enterprise.html"><MyIcon /></a>
             </li>
           </ul>
         </div>

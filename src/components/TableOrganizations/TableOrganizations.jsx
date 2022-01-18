@@ -1,7 +1,8 @@
 import React from "react";
 import './styles.css';
-import { FiFilter } from 'react-icons/fi';
+import { Icon } from '@fluentui/react/lib/Icon';
 
+const MyIcon = () => <Icon iconName="Filter" />;
 
 
 class Organizations extends React.Component {
@@ -9,19 +10,21 @@ class Organizations extends React.Component {
     return (
       <div className="container">
 
-          <h2>Organizações</h2>
-
         <div className="container-btn">
+        <h2>Organizações</h2>
+<div className="container-btn__btn">
+
           <button className="btn table-organizations__add" type="submit">
             + Nova Organização
           </button>
           <button className="btn table-organizations__filter" type="submit">
-           <FiFilter size={15}/> Filtrar organizações
+           <MyIcon /> Filtrar organizações
           </button>
+</div>
         </div>
-        
+
         <div className="table-organizations">
-        <table className="table-organizations__items" border="1">
+        <table className="table-organizations">
           <tr>
             <th className="table-name">Nome</th>
           </tr>
