@@ -3,11 +3,12 @@ import { ITextFieldStyles } from "@fluentui/react/lib/TextField";
 import {
   DetailsList,
   DetailsListLayoutMode,
-  Selection,
   IColumn,
+  SelectionMode
 } from "@fluentui/react/lib/DetailsList";
-import { MarqueeSelection } from "@fluentui/react/lib/MarqueeSelection";
 import { mergeStyles } from "@fluentui/react/lib/Styling";
+
+import './styles.css';
 
 const exampleChildClass = mergeStyles({
   display: "block",
@@ -27,24 +28,17 @@ interface IDetailsListBasicExampleItem {
 
 interface IDetailsListBasicExampleState {
   items: IDetailsListBasicExampleItem[];
-  selectionDetails: string;
 }
 
 class DetailsListBasicExample extends React.Component<
   {},
   IDetailsListBasicExampleState
 > {
-  private _selection: Selection;
   private _allItems: IDetailsListBasicExampleItem[];
   private _columns: IColumn[];
 
   constructor(props: {}) {
     super(props);
-
-
-   this._selection = new Selection({
-      onSelectionChanged: () => this.setState({ selectionDetails: this._getSelectionDetails() }),
-    });
 
     this._allItems = [];
     for (let i = 1; i <= 3; i++) {
@@ -68,44 +62,25 @@ class DetailsListBasicExample extends React.Component<
 
         this.state = {
       items: this._allItems,
-      selectionDetails: this._getSelectionDetails(),
     };
 
   }
 
   public render(): JSX.Element {
-    const { items, selectionDetails } = this.state;
+    const { items } = this.state;
 
     return (
-        <MarqueeSelection selection={this._selection}>
-          <DetailsList
-            items={items}
-            columns={this._columns}
-            setKey="set"
-            layoutMode={DetailsListLayoutMode.justified}
-            selectionPreservedOnEmptyClick={true}
-            onItemInvoked={this._onItemInvoked}
-          />
-        </MarqueeSelection>
+      <div className="teste">
+        <DetailsList
+          items={items}
+          columns={this._columns}
+          setKey="set"
+          selectionMode={SelectionMode.none}
+          layoutMode={DetailsListLayoutMode.justified}
+        />
+        </div>
     );
   }
-
-private _getSelectionDetails(): string {
-    const selectionCount = this._selection.getSelectedCount();
-
-    switch (selectionCount) {
-      case 0:
-        return 'No items selected';
-      case 1:
-        return '1 item selected: ' + (this._selection.getSelection()[0] as IDetailsListBasicExampleItem).name;
-      default:
-        return `${selectionCount} items selected`;
-    }
-  }
-
-    private _onItemInvoked = (item: IDetailsListBasicExampleItem): void => {
-    alert(`Item invoked: ${item.name}`);
-  };
 }
 
 export default DetailsListBasicExample

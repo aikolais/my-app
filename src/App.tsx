@@ -1,13 +1,19 @@
-// import Navbar from './navbar/Navbar';
+import Navbar from './navbar/Navbar';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 import DetailsListBasicExample from './components/TableOrganizations/DetailsListBasicExample';
+import BtnOrganization from './components/Button/BtnOrganization';
+import SideBar from './components/Sidebar/sidebar';
 
-initializeIcons();
+initializeIcons('https://my.cdn.com/path/to/icons/');
 
 function App() {
   return (
-    //  <Navbar />
+    <div className="father">
+     <Navbar />
+     <SideBar />
+     <BtnOrganization />
     <DetailsListBasicExample />
+    </div>
   );
 }
 
