@@ -21,6 +21,8 @@ const textFieldStyles: Partial<ITextFieldStyles> = {
 interface IDetailsListBasicExampleItem {
   key: number;
   name: string;
+  value: number;
+
 }
 
 interface IDetailsListBasicExampleState {
@@ -39,11 +41,17 @@ class DetailsListBasicExample extends React.Component<
   constructor(props: {}) {
     super(props);
 
+
+   this._selection = new Selection({
+      onSelectionChanged: () => this.setState({ selectionDetails: this._getSelectionDetails() }),
+    });
+
     this._allItems = [];
     for (let i = 1; i <= 10; i++) {
       this._allItems.push({
         key: i,
         name: "Organização " + i,
+        value: i,
       });
     }
 
@@ -57,24 +65,47 @@ class DetailsListBasicExample extends React.Component<
         isResizable: true,
       },
     ];
+
+        this.state = {
+      items: this._allItems,
+      selectionDetails: this._getSelectionDetails(),
+    };
+
   }
 
   public render(): JSX.Element {
     const { items, selectionDetails } = this.state;
 
     return (
-      <div>
         <MarqueeSelection selection={this._selection}>
           <DetailsList
             items={items}
             columns={this._columns}
             setKey="set"
             layoutMode={DetailsListLayoutMode.justified}
+            selectionPreservedOnEmptyClick={true}
+            onItemInvoked={this._onItemInvoked}
           />
         </MarqueeSelection>
-      </div>
     );
   }
+
+private _getSelectionDetails(): string {
+    const selectionCount = this._selection.getSelectedCount();
+
+    switch (selectionCount) {
+      case 0:
+        return 'No items selected';
+      case 1:
+        return '1 item selected: ' + (this._selection.getSelection()[0] as IDetailsListBasicExampleItem).name;
+      default:
+        return `${selectionCount} items selected`;
+    }
+  }
+
+    private _onItemInvoked = (item: IDetailsListBasicExampleItem): void => {
+    alert(`Item invoked: ${item.name}`);
+  };
 }
 
 export default DetailsListBasicExample
