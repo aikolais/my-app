@@ -47,7 +47,7 @@ class DetailsListBasicExample extends React.Component<
     });
 
     this._allItems = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 3; i++) {
       this._allItems.push({
         key: i,
         name: "Organização " + i,
