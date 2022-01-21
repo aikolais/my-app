@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { Nav, INavStyles, INavLinkGroup } from '@fluentui/react/lib/Nav';
 
 import { initializeIcons } from "@fluentui/react";
+import { useState } from 'react';
 
 
 initializeIcons();
@@ -45,23 +46,27 @@ const navLinkGroups: INavLinkGroup[] = [
         url: 'http://cnn.com',
         icon: 'ConfigurationSolid',
         key: 'key7',
-        target: '_blank',
+        // target: '_blank',
         title: '',
       },
         {
-        name: '',
+        name: 'Oi',
         url: 'xxxx',
-        icon: 'DoubleChevronLeftMedMirrored',
+        icon: 'DoubleChevronLeftMed',
         key: 'key9',
+        expandAriaLabel: 'Expand Oi section',
+        collapseAriaLabel: 'Collapse Oi section',
       },
     ],
   },
 ];
+
 
 const SideBar = (props: any) => {
   return (
     <Nav styles={navStyles} groups={navLinkGroups} />
   );
 };
+
 
 export default SideBar;
