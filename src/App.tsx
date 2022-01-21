@@ -11,8 +11,8 @@ function App() {
     <div className="father">
      <Navbar />
      <SideBar />
-     <BtnOrganization />
-    <DetailsListBasicExample />
+     {/* <BtnOrganization /> */}
+    {/* <DetailsListBasicExample /> */}
     </div>
   );
 }

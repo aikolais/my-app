@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, INavStyles, INavLinkGroup } from '@fluentui/react/lib/Nav';
 
-import { initializeIcons } from "@fluentui/react";
+import { getTheme, initializeIcons } from "@fluentui/react";
 import { useState } from 'react';
 
 
@@ -9,11 +9,14 @@ initializeIcons();
 
 const navStyles: Partial<INavStyles> = {
   root: {
-    width: 208,
-    height: 700,
+    width: 250,
+    height: 673,
     boxSizing: 'border-box',
     border: '1px solid black',
     overflowY: 'auto',
+    padding: '5px',
+    marginTop: '-1.5vh',
+    top: '42px',
   },
   link: {
     whiteSpace: 'normal',
@@ -21,9 +24,11 @@ const navStyles: Partial<INavStyles> = {
   },
 };
 
-
 const navLinkGroups: INavLinkGroup[] = [
   {
+    name: 'Dashboard',
+    expandAriaLabel: 'Expand Dashboard section',
+    collapseAriaLabel: 'Collapse Dashboard section',
     links: [
       {
         name: 'Workspaces',
@@ -49,17 +54,11 @@ const navLinkGroups: INavLinkGroup[] = [
         // target: '_blank',
         title: '',
       },
-        {
-        name: 'Oi',
-        url: 'xxxx',
-        icon: 'DoubleChevronLeftMed',
-        key: 'key9',
-        expandAriaLabel: 'Expand Oi section',
-        collapseAriaLabel: 'Collapse Oi section',
-      },
     ],
   },
 ];
+
+
 
 
 const SideBar = (props: any) => {
