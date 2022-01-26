@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="father">
      <Navbar />
-     <SideBar />
+     <SideBar isCheckedInitial={false}/>
      {/* <BtnOrganization /> */}
     {/* <DetailsListBasicExample /> */}
     </div>

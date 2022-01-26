@@ -1,71 +1,70 @@
-import React from 'react';
-import { Nav, INavStyles, INavLinkGroup } from '@fluentui/react/lib/Nav';
-
-import { getTheme, initializeIcons } from "@fluentui/react";
-import { useState } from 'react';
-
-
-initializeIcons();
-
-const navStyles: Partial<INavStyles> = {
-  root: {
-    width: 250,
-    height: 673,
-    boxSizing: 'border-box',
-    border: '1px solid black',
-    overflowY: 'auto',
-    padding: '5px',
-    marginTop: '-1.5vh',
-    top: '42px',
-  },
-  link: {
-    whiteSpace: 'normal',
-    lineHeight: 'inherit',
-  },
-};
-
-const navLinkGroups: INavLinkGroup[] = [
-  {
-    name: 'Dashboard',
-    expandAriaLabel: 'Expand Dashboard section',
-    collapseAriaLabel: 'Collapse Dashboard section',
-    links: [
-      {
-        name: 'Workspaces',
-        url: 'http://example.com',
-        icon: 'ProductVariant',
-        key: 'key3',
-        target: '_blank',
-        title: '',
-      },
-      {
-        name: 'Usuários',
-        url: 'http://msn.com',
-        icon: 'Contact',
-        key: 'key4',
-        target: '_blank',
-        title: '',
-      },
-      {
-        name: 'Configurações',
-        url: 'http://cnn.com',
-        icon: 'ConfigurationSolid',
-        key: 'key7',
-        // target: '_blank',
-        title: '',
-      },
-    ],
-  },
-];
+import React, { useEffect, useState } from 'react';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
+import "react-pro-sidebar/dist/css/styles.css";
+import { RiGroupLine } from "react-icons/ri";
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdNoEncryption, MdWorkspacesOutline } from "react-icons/md";
+import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 
 
 
+import './styles.css';
 
-const SideBar = (props: any) => {
+interface SidebarProps {
+  onChange?: (event: React.MouseEvent, isChecked?: boolean) => void;
+  isCheckedInitial: boolean;
+}
+
+ 
+export function Sidebar({ onChange, isCheckedInitial, ...rest }: SidebarProps) {
+  const [isChecked, setCheckedState] = useState(isCheckedInitial);
+
+  useEffect(() => {
+    setCheckedState(isCheckedInitial);
+  }, [isCheckedInitial]);
+
+  const handleChange = (event: React.MouseEvent) => {
+    setCheckedState(!isChecked);
+    onChange && onChange(event, isChecked);    
+  };
+
+   const styl = {
+     display: 'none'
+    };
+
+      const styli = {
+     display: "block"
+    };
+    
   return (
-    <Nav styles={navStyles} groups={navLinkGroups} />
+    <div id="header">
+    <ProSidebar collapsed={isChecked}>
+      <Menu>
+          <SidebarContent>
+          <MenuItem icon={<MdWorkspacesOutline />}>Workspace</MenuItem>
+          <MenuItem icon={<RiGroupLine />}>Usuários</MenuItem>
+          </SidebarContent>
+
+          <SidebarFooter className="footer__sidebar">
+          <MenuItem icon={<IoSettingsOutline />}>Configurações</MenuItem>
+
+          <div className="closemenu" onClick={handleChange}>
+              {/* {isChecked ? (        
+                <BsChevronDoubleRight /> 
+              ) : (
+              
+              )} */}
+                <BsChevronDoubleLeft id='left'/>
+
+          </div>
+          </SidebarFooter>
+          <div style={styl}>
+          <MenuItem icon={<BsChevronDoubleRight />} onClick={handleChange}></MenuItem>
+          </div>
+      </Menu>
+    </ProSidebar>
+    </div>
   );
-};
+}
 
-
-export default SideBar;
+export default Sidebar;
