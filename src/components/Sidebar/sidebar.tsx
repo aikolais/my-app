@@ -28,40 +28,29 @@ export function Sidebar({ onChange, isCheckedInitial, ...rest }: SidebarProps) {
     onChange && onChange(event, isChecked);    
   };
 
-   const styl = {
-     display: 'none'
-    };
-
-      const styli = {
-     display: "block"
-    };
-    
   return (
     <div id="header">
     <ProSidebar collapsed={isChecked}>
-      <Menu>
           <SidebarContent>
-          <MenuItem icon={<MdWorkspacesOutline />}>Workspace</MenuItem>
-          <MenuItem icon={<RiGroupLine />}>Usuários</MenuItem>
+              <Menu>
+              <MenuItem icon={<MdWorkspacesOutline />}>Workspace</MenuItem>
+            <MenuItem icon={<RiGroupLine />}>Usuários</MenuItem>
+          </Menu>
           </SidebarContent>
-
-          <SidebarFooter className="footer__sidebar">
-          <MenuItem icon={<IoSettingsOutline />}>Configurações</MenuItem>
-
-          <div className="closemenu" onClick={handleChange}>
-              {/* {isChecked ? (        
-                <BsChevronDoubleRight /> 
-              ) : (
-              
-              )} */}
-                <BsChevronDoubleLeft id='left'/>
-
-          </div>
+          <SidebarFooter>
+            <Menu>
+            <MenuItem icon={<IoSettingsOutline />}>Configurações</MenuItem>
+            <MenuItem icon=
+              {isChecked ? (        
+                  <BsChevronDoubleRight /> 
+                ) : (
+                <BsChevronDoubleLeft />
+                )
+            } onClick={handleChange}>
+              Diminiuir
+            </MenuItem>
+          </Menu>
           </SidebarFooter>
-          <div style={styl}>
-          <MenuItem icon={<BsChevronDoubleRight />} onClick={handleChange}></MenuItem>
-          </div>
-      </Menu>
     </ProSidebar>
     </div>
   );
